@@ -55,7 +55,6 @@ import {
 import { Pagination } from '../../components/common/Pagination';
 import {
   FiSearch,
-  FiFilter,
   FiEye,
   FiCheck,
   FiX,

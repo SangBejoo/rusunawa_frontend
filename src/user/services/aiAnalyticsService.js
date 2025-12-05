@@ -177,7 +177,7 @@ class AIAnalyticsService {
     
     try {
       console.log('🔍 Making actual API call to check service status...');
-      console.log('🌐 Health check endpoint: https://qtd9x9cp-8001.asse.devtunnels.ms/v1/health');
+      console.log('🌐 Health check endpoint: rusunawa-skripsi-v1-production.up.railway.app/v1/health');
       
       // Use the dedicated health endpoint that doesn't trigger any business logic
       const response = await api.get('/health', {
@@ -664,4 +664,5 @@ class AIAnalyticsService {
 }
 
 // Export singleton instance
-export default new AIAnalyticsService();
+const aiAnalyticsService = new AIAnalyticsService();
+export default aiAnalyticsService;

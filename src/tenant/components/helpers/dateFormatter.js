@@ -148,9 +148,11 @@ export const getRelativeTime = (isoDate, locale = 'id-ID') => {
   }
 };
 
-export default {
+const dateFormatterUtils = {
   formatDate,
   formatDateTime,
   formatDateRange,
   getRelativeTime
 };
+
+export default dateFormatterUtils;

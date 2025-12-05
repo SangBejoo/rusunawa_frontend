@@ -70,7 +70,6 @@ import {
 import { Pagination } from '../../components/common/Pagination';
 import {
   FiSearch,
-  FiFilter,
   FiPlus,
   FiEye,
   FiEdit,

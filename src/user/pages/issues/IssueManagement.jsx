@@ -42,7 +42,6 @@ import {
   Tooltip
 } from '@chakra-ui/react';
 import {  FiSearch,
-  FiFilter,
   FiEye,
   FiMessageSquare,
   FiUser,

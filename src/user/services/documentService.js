@@ -298,26 +298,6 @@ const documentService = {
     } catch (error) {
       throw new Error(error.message || 'Failed to fetch document verification');
     }
-  },
-  /**
-   * Review document
-   * @param {number} documentId - Document ID
-   * @param {Object} reviewData - Review data
-   * @returns {Promise} - Review response
-   */
-  reviewDocument: async (documentId, reviewData) => {
-    try {
-      const response = await api.post(`/documents/${documentId}/review`, reviewData);
-      // Always return the response data, even if it contains an error status
-      return response.data;
-    } catch (error) {
-      // Only throw if it's a network error or other HTTP error
-      if (error.response && error.response.data) {
-        // Return the error response from the backend
-        return error.response.data;
-      }
-      throw new Error(error.message || 'Failed to review document');
-    }
   }
 };
 

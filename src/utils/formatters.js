@@ -161,10 +161,12 @@ export const getFormattedRoomPrice = (room) => {
   return `${price} / ${perUnit}`;
 };
 
-export default {
+const formatters = {
   formatDate,
   formatCurrency,
   formatDateRange,
   calculateDurationDays,
   getStatusColor
 };
+
+export default formatters;

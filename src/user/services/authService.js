@@ -4,10 +4,13 @@ const authService = {
   /**
    * Login user
    */  login: async (email, password) => {
-    try {      const response = await api.post('/auth/login', {
+    try {      console.log('🔐 AuthService: Attempting login with baseURL:', api.defaults.baseURL);
+      const response = await api.post('/auth/login', {
         email,
         password
       });
+      
+      console.log('✅ AuthService: Login successful');
       
       // Normalize user data for frontend compatibility
       const user = response.data.user;

@@ -51,12 +51,7 @@ import {
   StatNumber,
   StatGroup,
   Divider,
-  Tooltip,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider
+  Tooltip
 } from '@chakra-ui/react';
 import {
   AddIcon,
@@ -64,8 +59,7 @@ import {
   DeleteIcon,
   SearchIcon,
   ViewIcon,
-  SettingsIcon,
-  ChevronDownIcon
+  SettingsIcon
 } from '@chakra-ui/icons';
 import { FaUsers, FaUserShield, FaUserTie, FaFilter } from 'react-icons/fa';
 import userService from '../../services/userService';
@@ -130,8 +124,6 @@ const UserManagement = () => {
   } = useDisclosure();
 
   // Colors
-  const bgColor = useColorModeValue('white', 'gray.800');
-  const borderColor = useColorModeValue('gray.200', 'gray.600');
   const tableHeaderBg = useColorModeValue('gray.50', 'gray.700');
 
   // Fetch users

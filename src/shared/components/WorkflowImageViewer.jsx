@@ -5,14 +5,11 @@ import {
   HStack,
   Text,
   Button,
-  Icon,
   Card,
   CardBody,
-  CardHeader,
   Image,
+  Icon,
   Badge,
-  Grid,
-  GridItem,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -21,30 +18,16 @@ import {
   ModalCloseButton,
   useDisclosure,
   useColorModeValue,
-  Divider,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Tooltip,
-  Link,
-  Flex,
-  Tag,
-  TagLabel,
-  SimpleGrid
+  Grid,
+  Flex
 } from '@chakra-ui/react';
 import {
-  FaImage,
   FaEye,
   FaDownload,
-  FaCalendarAlt,
-  FaUser,
   FaFileImage,
-  FaExpand,
-  FaClock,
-  FaTag,
-  FaComment
+  FaComment,
+  FaCalendarAlt,
+  FaUser
 } from 'react-icons/fa';
 import { formatDateTime } from '../../utils/dateUtils';
 

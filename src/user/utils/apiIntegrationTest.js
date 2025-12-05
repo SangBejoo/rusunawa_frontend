@@ -7,7 +7,7 @@ import api from '../utils/apiClient';
 export class APIIntegrationTest {
   constructor() {
     this.results = {};
-    this.baseUrl = process.env.REACT_APP_API_BASE_URL || 'https://qtd9x9cp-8001.asse.devtunnels.ms/api';
+    this.baseUrl = process.env.REACT_APP_API_BASE_URL || 'rusunawa-skripsi-v1-production.up.railway.app/api';
   }
 
   /**

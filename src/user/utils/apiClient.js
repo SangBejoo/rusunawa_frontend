@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://qtd9x9cp-8001.asse.devtunnels.ms';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'rusunawa-skripsi-v1-production.up.railway.app';
 const API_VERSION = process.env.REACT_APP_VERSION || 'v1';
 
 // Create axios instance
@@ -11,6 +11,8 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+console.log('🔧 API Client baseURL:', api.defaults.baseURL);
 
 // Request interceptor to add auth token
 api.interceptors.request.use(
