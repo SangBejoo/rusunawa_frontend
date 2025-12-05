@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2e662a65.css",
+    "main.js": "/static/js/main.5c51fd08.js",
+    "static/js/239.1980790f.chunk.js": "/static/js/239.1980790f.chunk.js",
+    "static/js/977.ba12c86a.chunk.js": "/static/js/977.ba12c86a.chunk.js",
+    "static/js/455.7d4c1e29.chunk.js": "/static/js/455.7d4c1e29.chunk.js",
+    "static/js/488.3f2a9196.chunk.js": "/static/js/488.3f2a9196.chunk.js",
+    "static/media/Ruang_rapat.jpg": "/static/media/Ruang_rapat.d4d21d1fe2333166a34a.jpg",
+    "static/media/male-room.jpg": "/static/media/male-room.1f4a2a6988b4dc17a80f.jpg",
+    "static/media/female-room.jpg": "/static/media/female-room.0d844d8a800feb964dd8.jpg",
+    "static/media/rusunawa-logo.png": "/static/media/rusunawa-logo.cdef218e9742edf7a549.png",
+    "index.html": "/index.html",
+    "main.2e662a65.css.map": "/static/css/main.2e662a65.css.map",
+    "main.5c51fd08.js.map": "/static/js/main.5c51fd08.js.map",
+    "239.1980790f.chunk.js.map": "/static/js/239.1980790f.chunk.js.map",
+    "977.ba12c86a.chunk.js.map": "/static/js/977.ba12c86a.chunk.js.map",
+    "455.7d4c1e29.chunk.js.map": "/static/js/455.7d4c1e29.chunk.js.map",
+    "488.3f2a9196.chunk.js.map": "/static/js/488.3f2a9196.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2e662a65.css",
+    "static/js/main.5c51fd08.js"
+  ]
+}
