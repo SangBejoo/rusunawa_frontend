@@ -664,4 +664,5 @@ class AIAnalyticsService {
 }
 
 // Export singleton instance
-export default new AIAnalyticsService();
+const aiAnalyticsService = new AIAnalyticsService();
+export default aiAnalyticsService;

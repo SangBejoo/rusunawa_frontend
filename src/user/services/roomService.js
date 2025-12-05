@@ -285,38 +285,6 @@ const roomService = {
       throw new Error(error.message || 'Failed to add room amenity');
     }
   },
-  /**
-   * Update room amenity
-   */
-  updateRoomAmenity: async (roomId, amenityName, amenityData) => {
-    try {
-      const response = await api.put(`/rooms/${roomId}/amenities`, {
-        room_id: roomId,
-        amenity_name: amenityName,
-        quantity: amenityData.quantity
-      });
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message || 'Failed to update room amenity');
-    }
-  },
-
-  /**
-   * Remove room amenity
-   */
-  removeRoomAmenity: async (roomId, amenityName) => {
-    try {
-      const response = await api.delete(`/rooms/${roomId}/amenities`, {
-        data: {
-          room_id: roomId,
-          amenity_name: amenityName
-        }
-      });
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message || 'Failed to remove room amenity');
-    }
-  },
 
   /**
    * Get room rates
@@ -500,12 +468,6 @@ const roomService = {
   },
 
   /**
-   * Get room image URL for display
-   */
-  getRoomImageUrl: (imageId) => {
-    return `${api.defaults.baseURL}/room-images/${imageId}`;
-  },
-  /**
    * Add image to room
    */  addRoomImage: async (roomId, imageData) => {
     try {
@@ -524,26 +486,6 @@ const roomService = {
       return response.data;
     } catch (error) {
       throw new Error(error.message || 'Failed to upload room image');
-    }
-  },
-  /**
-   * Delete room image
-   */
-  deleteRoomImage: async (imageId, roomId = null) => {
-    try {
-      const response = await api.delete(`/room-images/${imageId}`);
-      
-      // Clear cache for this room if roomId is provided
-      if (roomId) {
-        clearImageCache(roomId);
-      } else {
-        // If roomId not provided, clear all cache to be safe
-        clearImageCache();
-      }
-      
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message || 'Failed to delete room image');
     }
   },
 
@@ -570,26 +512,6 @@ const roomService = {
   // ============================================================================
   // ROOM IMAGE METHODS
   // ============================================================================
-
-  /**
-   * Upload room image
-   */
-  uploadRoomImage: async (roomId, imageFile) => {
-    try {
-      const formData = new FormData();
-      formData.append('image', imageFile);
-
-      const response = await api.post(`/rooms/${roomId}/images`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message || 'Failed to upload room image');
-    }
-  },
-
 
   /**
    * Update room image
@@ -628,18 +550,6 @@ const roomService = {
   // ============================================================================
   // ROOM AMENITY METHODS
   // ============================================================================
-
-  /**
-   * Get room amenities
-   */
-  getRoomAmenities: async (roomId) => {
-    try {
-      const response = await api.get(`/rooms/${roomId}/amenities`);
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message || 'Failed to fetch room amenities');
-    }
-  },
 
   /**
    * Add amenities to room
