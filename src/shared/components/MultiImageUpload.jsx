@@ -4,30 +4,22 @@ import {
   VStack,
   HStack,
   Text,
-  Button,
-  Icon,
   Card,
   CardBody,
   Image,
   IconButton,
-  Progress,
   Grid,
   GridItem,
   Badge,
-  Flex,
+  Icon,
   useColorModeValue,
   useToast,
   Alert,
   AlertIcon,
-  AlertTitle,
   AlertDescription
 } from '@chakra-ui/react';
 import {
-  FaUpload,
-  FaImage,
   FaTimes,
-  FaCamera,
-  FaTrash,
   FaEye,
   FaPlus,
   FaCloudUploadAlt,
@@ -51,7 +43,6 @@ const MultiImageUpload = ({
   const toast = useToast();
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState({});
   // Color mode values
   const cardBg = useColorModeValue('white', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.600');
@@ -60,7 +51,7 @@ const MultiImageUpload = ({
   const textColor = useColorModeValue('gray.600', 'gray.300');
   const hoverBg = useColorModeValue('gray.50', 'gray.600');
 
-  const handleFileValidation = (file) => {
+  const handleFileValidation = useCallback((file) => {
     // Check file size
     if (file.size > maxSizePerFile) {
       toast({
@@ -86,7 +77,7 @@ const MultiImageUpload = ({
     }
 
     return true;
-  };
+  }, [maxSizePerFile, acceptedTypes, toast]);
 
   const processFiles = useCallback(async (files) => {
     const fileArray = Array.from(files);

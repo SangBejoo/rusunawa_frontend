@@ -8,10 +8,6 @@ import {
   Button,
   Stack,
   Collapse,
-  Icon,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
   useDisclosure,
   Avatar,
@@ -25,13 +21,10 @@ import {
 import { 
   HamburgerIcon, 
   CloseIcon, 
-  ChevronDownIcon, 
-  ChevronRightIcon, 
   BellIcon
 } from '@chakra-ui/icons';
 import { useTenantAuth } from '../context/tenantAuthContext';
 import logo from '../../assets/images/rusunawa-logo.png';
-import { FaMoneyBillWave, FaFileInvoice } from 'react-icons/fa';
 
 const NavBar = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -42,7 +35,6 @@ const NavBar = () => {
   // Colors
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const hoverBg = useColorModeValue('gray.50', 'gray.700');
   
   // Handle logout
   const handleLogout = () => {

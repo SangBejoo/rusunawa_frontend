@@ -307,7 +307,7 @@ export const statusDisplayMap = {
   }
 };
 
-export default {
+const typeConverterUtils = {
   formatCurrency,
   formatNumber,
   capitalizeEachWord,
@@ -322,3 +322,5 @@ export default {
   toNumber,
   statusDisplayMap
 };
+
+export default typeConverterUtils;

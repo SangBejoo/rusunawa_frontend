@@ -7,23 +7,21 @@ import {
   Image,
   Button,
   HStack,
-  Spinner,
   useColorModeValue,
   Badge,
-  Link,
   Flex,
   Alert,
   AlertIcon,
+  Spinner,
+  Divider,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
   useDisclosure,
   IconButton,
-  Divider,
   useToast,
   AlertDialog,
   AlertDialogBody,
@@ -32,13 +30,11 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   ButtonGroup,
-  Icon,
 } from '@chakra-ui/react';
 import { FaDownload, FaEye, FaFileAlt, FaFilePdf, FaTrash, FaUpload, FaExclamationTriangle } from 'react-icons/fa';
-import { MdFullscreen, MdWarning } from 'react-icons/md';
+import { MdFullscreen } from 'react-icons/md';
 import { formatDate } from '../../utils/dateUtils';
 import documentService from '../../services/documentService';
-import { ErrorAlert, DocumentDeleteAlert } from '../ui/EnhancedAlert';
 
 /**
  * Component to view document details and preview
@@ -55,7 +51,6 @@ const DocumentViewer = ({ document, onDelete, onReplace }) => {
   
   const cardBg = useColorModeValue('white', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.600');
-  const textColor = useColorModeValue('gray.700', 'gray.200');
   
   // Pre-define all useColorModeValue calls for AlertDialog
   const alertBg = useColorModeValue('white', 'gray.800');
@@ -232,12 +227,13 @@ const DocumentViewer = ({ document, onDelete, onReplace }) => {
       );
     }    if (error) {
       return (
-        <ErrorAlert
-          title="Unable to Load Document"
-          description={error}
-          size="lg"
-          boxShadow="lg"
-        />
+        <Alert status="error" borderRadius="md" boxShadow="lg">
+          <AlertIcon />
+          <div>
+            <Text fontWeight="bold">Unable to Load Document</Text>
+            <Text>{error}</Text>
+          </div>
+        </Alert>
       );
     }
     
