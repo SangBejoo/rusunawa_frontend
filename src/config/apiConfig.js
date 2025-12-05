@@ -4,7 +4,7 @@
  */
 
 // API base URL - configurable per environment
-export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'rusunawa-skripsi-v1-production.up.railway.app/api';
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'rusunawa-skripsi-v1-production.up.railway.app';
 
 // Default headers for API requests
 export const DEFAULT_HEADERS = {
