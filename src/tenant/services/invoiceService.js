@@ -3,7 +3,7 @@ import { API_BASE_URL } from '../../config/apiConfig';
 import tenantAuthService from './tenantAuthService';
 
 // Update API URL to match the correct backend endpoint
-const API_URL = `${API_BASE_URL || 'https://qtd9x9cp-8001.asse.devtunnels.ms'}/v1`;
+const API_URL = `${API_BASE_URL || 'rusunawa-skripsi-v1-production.up.railway.app'}/v1`;
 
 /**
  * Service for handling invoice-related operations

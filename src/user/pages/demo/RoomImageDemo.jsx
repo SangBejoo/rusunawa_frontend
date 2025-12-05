@@ -74,7 +74,7 @@ const RoomImageDemo = () => {
                   <strong>Endpoint:</strong> <Code>GET /v1/rooms/{'{roomId}'}/images</Code>
                 </Text>
                 <Text>
-                  <strong>Example URL:</strong> <Code>https://qtd9x9cp-8001.asse.devtunnels.ms/v1/rooms/1/images</Code>
+                  <strong>Example URL:</strong> <Code>rusunawa-skripsi-v1-production.up.railway.app/v1/rooms/1/images</Code>
                 </Text>
                 <Text>
                   <strong>Response Format:</strong>

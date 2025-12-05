@@ -5,7 +5,7 @@
 // API configuration
 export const API_CONFIG = {
   // Provide multiple fallbacks to ensure we always have a base URL
-  BASE_URL: process.env.REACT_APP_API_URL || window.REACT_APP_API_URL || 'https://qtd9x9cp-8001.asse.devtunnels.ms',
+  BASE_URL: process.env.REACT_APP_API_URL || window.REACT_APP_API_URL || 'rusunawa-skripsi-v1-production.up.railway.app',
   TIMEOUT: 15000,
   VERSION: 'v1'
 };

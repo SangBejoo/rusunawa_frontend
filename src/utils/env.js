@@ -2,7 +2,7 @@
  * Environment variables access utility
  */
 
-export const API_URL = process.env.REACT_APP_API_URL || 'https://qtd9x9cp-8001.asse.devtunnels.ms';
+export const API_URL = process.env.REACT_APP_API_URL || 'rusunawa-skripsi-v1-production.up.railway.app';
 export const APP_VERSION = process.env.REACT_APP_VERSION || 'v1';
 export const APP_ENV = process.env.REACT_APP_ENV || 'development';
 
