@@ -697,7 +697,7 @@ const roomService = {
    */
   getRoomImageUrl: (imageId) => {
     if (!imageId) return null;
-    return `${process.env.REACT_APP_API_URL || 'https://qtd9x9cp-8001.asse.devtunnels.ms'}/v1/room-images/${imageId}`;
+    return `${process.env.REACT_APP_API_URL || 'rusunawa-skripsi-v1-production.up.railway.app'}/v1/room-images/${imageId}`;
   },  /**
    * Get room image data for preview
    */
