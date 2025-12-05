@@ -431,73 +431,8 @@ const issueService = {
    */
   getIssueDetails: async (issueId) => {
     return issueService.getIssueById(issueId);
-  },  /**
-   * Get issue attachments - Multi-image flow implementation
-   */
-  getIssueAttachments: async (issueId, attachmentType = '') => {
-    try {
-      const url = attachmentType 
-        ? `/issues/${issueId}/attachments?type=${attachmentType}`
-        : `/issues/${issueId}/attachments`;
-      
-      const response = await api.get(url);
-      return response.data;
-    } catch (error) {
-      if (error.response && error.response.status === 404) {
-        return { attachments: [] };
-      }
-      console.error('Error fetching issue attachments:', error);
-      throw new Error(error.message || 'Failed to fetch issue attachments');
-    }
-  },  /**
-   * Upload issue attachment - Multi-image flow implementation
-   */  
-  uploadIssueAttachment: async (issueId, file, attachmentType, uploadedBy) => {
-    try {
-      console.log('uploadIssueAttachment called with:', {
-        issueId,
-        fileName: file.name,
-        fileSize: file.size,
-        fileType: file.type,
-        attachmentType,
-        uploadedBy
-      });
-
-      // Convert file to base64
-      const base64Content = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const base64 = reader.result.split(',')[1]; // Remove data:image/... prefix
-          console.log('Base64 conversion successful, length:', base64.length);
-          resolve(base64);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-
-      const payload = {
-        issue_id: issueId,
-        file_name: file.name,
-        file_type: file.type.split('/')[1], // e.g., 'png' from 'image/png'
-        content: base64Content,
-        attachment_type: attachmentType,
-        uploaded_by: uploadedBy
-      };
-
-      console.log('Sending attachment payload:', {
-        ...payload,
-        content: `[BASE64 DATA - ${payload.content.length} chars]` // Don't log full base64
-      });
-
-      const response = await api.post(`/issues/${issueId}/attachments`, payload);
-      console.log('Attachment upload response:', response.data);
-      return response.data;
-    } catch (error) {
-      console.error('Error uploading attachment:', error);
-      console.error('Error details:', error.response?.data);
-      throw error;
-    }
   },
+
   /**
    * Delete issue attachment
    */
@@ -643,68 +578,7 @@ const issueService = {
       console.error('Error fetching attachment content:', error);
       throw new Error(error.message || 'Failed to fetch attachment content');
     }
-  },
-  /**
-   * Update issue status with tracking
-   * @param {number} issueId - The issue ID
-   * @param {object} statusData - Status update data
-   * @returns {Promise<Object>} The updated issue
-   */
-  updateIssueStatus: async (issueId, statusData) => {
-    try {
-      // Debug: Log the incoming statusData
-      console.log('Incoming statusData:', statusData);
-      
-      // Validate and convert updatedBy to integer
-      const updatedBy = parseInt(statusData.updatedBy);
-      if (isNaN(updatedBy)) {
-        throw new Error(`Invalid updatedBy value: ${statusData.updatedBy}. Expected a number.`);
-      }
-      
-      // Transform for API compatibility - use status update with progressAttachments
-      const payload = {
-        status: statusData.status,
-        notes: statusData.notes || '',
-        updatedBy: updatedBy,
-        progressPercentage: parseInt(statusData.progressPercentage) || 0
-      };
-      
-      // Add resolved_at if provided
-      if (statusData.resolvedAt) {
-        payload.resolvedAt = statusData.resolvedAt;
-      }
-        // Add image as progressAttachment if provided
-      if (statusData.image && statusData.image.content) {
-        const attachmentType = statusData.status === 'resolved' ? 'completion' : 
-                              statusData.status === 'in_progress' ? 'progress' : 
-                              statusData.status === 'closed' ? 'feedback' : 'report';
-        
-        payload.progressAttachments = [{
-          fileName: statusData.image.fileName,
-          fileType: statusData.image.fileType,
-          content: statusData.image.content, // Base64 content
-          attachmentType: attachmentType,
-          contextDescription: `Status update to ${statusData.status}: ${statusData.notes}`,
-          isPrimary: true
-        }];
-      }
-      
-      console.log('Transformed status update payload:', {
-        ...payload,
-        progressAttachments: payload.progressAttachments ? 
-          payload.progressAttachments.map(att => ({
-            ...att,
-            content: `[BASE64 DATA - ${att.content.length} chars]`
-          })) : undefined
-      });
-      
-      const response = await api.put(`/issues/${issueId}/status`, payload);
-      return response.data;
-    } catch (error) {
-      console.error('Update issue status error:', error);
-      throw new Error(error.message || 'Failed to update issue status');
-    }
-  },
+  }
 };
 
 export default issueService;

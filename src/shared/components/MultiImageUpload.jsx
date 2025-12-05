@@ -21,7 +21,6 @@ import {
 import {
   FaTimes,
   FaEye,
-  FaPlus,
   FaCloudUploadAlt,
   FaFileImage
 } from 'react-icons/fa';
@@ -173,7 +172,7 @@ const MultiImageUpload = ({
     if (files && files.length > 0) {
       processFiles(files);
     }
-  }, [disabled, processFiles]);
+  }, [disabled, processFiles, handleFileValidation]);
 
   const handleDragOver = useCallback((e) => {
     e.preventDefault();

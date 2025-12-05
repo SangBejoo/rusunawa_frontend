@@ -574,12 +574,10 @@ const roomService = {
   /**
    * Upload room image
    */
-  uploadRoomImage: async (roomId, imageFile, description = '', isPrimary = false) => {
+  uploadRoomImage: async (roomId, imageFile) => {
     try {
       const formData = new FormData();
       formData.append('image', imageFile);
-      formData.append('description', description);
-      formData.append('isPrimary', isPrimary.toString());
 
       const response = await api.post(`/rooms/${roomId}/images`, formData, {
         headers: {
@@ -608,9 +606,9 @@ const roomService = {
   /**
    * Delete room image
    */
-  deleteRoomImage: async (roomId, imageId) => {
+  deleteRoomImage: async (imageId, roomId = null) => {
     try {
-      const response = await api.delete(`/rooms/${roomId}/images/${imageId}`);
+      const response = await api.delete(`/rooms/${roomId || 'current'}/images/${imageId}`);
       return response.data;
     } catch (error) {
       throw new Error(error.message || 'Failed to delete room image');
@@ -660,11 +658,9 @@ const roomService = {
   /**
    * Update room amenity
    */
-  updateRoomAmenity: async (roomId, featureId, quantity) => {
+  updateRoomAmenity: async (roomId, amenityName, amenityData) => {
     try {
-      const response = await api.put(`/rooms/${roomId}/amenities/${featureId}`, {
-        quantity
-      });
+      const response = await api.put(`/rooms/${roomId}/amenities/${amenityName}`, amenityData);
       return response.data;
     } catch (error) {
       throw new Error(error.message || 'Failed to update room amenity');
@@ -674,14 +670,15 @@ const roomService = {
   /**
    * Remove room amenity
    */
-  removeRoomAmenity: async (roomId, featureId) => {
+  removeRoomAmenity: async (roomId, amenityName) => {
     try {
-      const response = await api.delete(`/rooms/${roomId}/amenities/${featureId}`);
+      const response = await api.delete(`/rooms/${roomId}/amenities/${amenityName}`);
       return response.data;
     } catch (error) {
       throw new Error(error.message || 'Failed to remove room amenity');
     }
   },
+
   /**
    * Get available features for amenities
    */
@@ -692,13 +689,17 @@ const roomService = {
     } catch (error) {
       throw new Error(error.message || 'Failed to fetch available features');
     }
-  },  /**
+  },
+
+  /**
    * Get room image URL from image ID
    */
   getRoomImageUrl: (imageId) => {
     if (!imageId) return null;
     return `${process.env.REACT_APP_API_URL || 'rusunawa-skripsi-v1-production.up.railway.app'}/v1/room-images/${imageId}`;
-  },  /**
+  },
+
+  /**
    * Get room image data for preview
    */
   getRoomImageData: async (imageId) => {

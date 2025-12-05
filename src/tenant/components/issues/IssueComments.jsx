@@ -19,8 +19,7 @@ import {
   Alert,
   AlertIcon,
   Select,
-  Icon,
-  Spinner
+  Icon
 } from '@chakra-ui/react';
 import {
   FaComment,

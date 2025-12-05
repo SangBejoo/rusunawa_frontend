@@ -590,63 +590,6 @@ const paymentService = {
   },
 
   /**
-   * Get invoices for a specific tenant
-   * @param {number} tenantId - The tenant ID
-   * @param {Object} params - Query parameters (status, page, limit)
-   * @returns {Promise<Object>} The tenant invoices response
-   */
-  getTenantInvoices: async (tenantId, params = {}) => {
-    try {
-      const token = tenantAuthService.getToken();
-      const config = { 
-        headers: { Authorization: `Bearer ${token}` },
-        params: params
-      };
-      
-      console.log(`Fetching invoices for tenant ${tenantId}...`);
-      
-      const response = await axios.get(
-        `${API_URL}/tenants/${tenantId}/invoices`,
-        config
-      );
-      
-      console.log('Tenant invoices response:', response.data);
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching invoices for tenant ${tenantId}:`, error);
-      throw error.response?.data || { message: 'Failed to fetch tenant invoices' };
-    }
-  },
-
-  /**
-   * Get payments for a specific tenant
-   * @param {number} tenantId - The tenant ID
-   * @param {Object} params - Query parameters (status, page, limit)
-   * @returns {Promise<Object>} The tenant payments response
-   */
-  getTenantPayments: async (tenantId, params = {}) => {
-    try {
-      const token = tenantAuthService.getToken();
-      const config = { 
-        headers: { Authorization: `Bearer ${token}` },
-        params: params
-      };
-      
-      console.log(`Fetching payments for tenant ${tenantId}...`);
-      
-      const response = await axios.get(
-        `${API_URL}/tenants/${tenantId}/payments`,
-        config
-      );
-        console.log('Tenant payments response:', response.data);
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching payments for tenant ${tenantId}:`, error);
-      throw error.response?.data || { message: 'Failed to fetch tenant payments' };
-    }
-  },
-
-  /**
    * Generate Snap token for Midtrans payment
    * @param {number} bookingId - The booking ID (optional)
    * @param {number} invoiceId - The invoice ID (optional)
@@ -1077,63 +1020,6 @@ const paymentService = {
       console.error('Error uploading manual payment proof:', error);
       throw error.response?.data || { 
         message: error.message || 'Failed to upload payment proof',
-        details: error.toString()
-      };
-    }
-  },
-
-  /**
-   * Get payment methods available for tenant
-   * @returns {Promise<Object>} The available payment methods
-   */
-  getPaymentMethods: async () => {
-    try {
-      const config = getConfig();
-      
-      console.log('Getting available payment methods');
-      const response = await axios.get(`${API_URL}/payment-methods`, config);
-      
-      if (response.data) {
-        return response.data;
-      }
-      
-      throw new Error("No payment methods data received");
-    } catch (error) {
-      console.error('Error getting payment methods:', error);
-      throw error.response?.data || { 
-        message: error.message || 'Failed to get payment methods',
-        details: error.toString()
-      };
-    }
-  },
-
-  /**
-   * Get tenant's payment history with filtering
-   * @param {number} tenantId - The tenant ID
-   * @param {Object} filters - Payment filters (status, date range, etc.)
-   * @returns {Promise<Object>} The payment history
-   */
-  getPaymentHistory: async (tenantId, filters = {}) => {
-    try {
-      const config = getConfig();
-      
-      const params = {
-        tenant_id: tenantId,
-        ...filters
-      };
-
-      console.log('Getting payment history with filters:', params);
-      const response = await axios.get(`${API_URL}/tenants/${tenantId}/payments`, { ...config, params });
-      
-      if (response.data) {
-        return response.data;
-      }
-      
-      throw new Error("No payment history data received");
-    } catch (error) {
-      console.error('Error getting payment history:', error);
-      throw error.response?.data || { 
-        message: error.message || 'Failed to get payment history',
         details: error.toString()
       };
     }

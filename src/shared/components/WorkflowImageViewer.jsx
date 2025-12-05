@@ -19,7 +19,6 @@ import {
   useDisclosure,
   useColorModeValue,
   Grid,
-  GridItem,
   Flex
 } from '@chakra-ui/react';
 import {
