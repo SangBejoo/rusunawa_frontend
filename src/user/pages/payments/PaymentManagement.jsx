@@ -64,7 +64,6 @@ import {
 } from '@chakra-ui/react';
 import {
   FiSearch,
-  FiFilter,
   FiMoreVertical,
   FiEye,
   FiEdit,

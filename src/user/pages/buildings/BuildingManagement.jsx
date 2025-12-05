@@ -52,7 +52,6 @@ import {
 } from '@chakra-ui/react';
 import {
   FiSearch,
-  FiFilter,
   FiPlus,
   FiEye,
   FiEdit,
